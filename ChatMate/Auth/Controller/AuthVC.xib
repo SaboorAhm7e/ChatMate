@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24128" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24063"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AuthVC" customModule="ChatMate" customModuleProvider="target">
+            <connections>
+                <outlet property="bottomLabel" destination="QDt-AS-rQi" id="RkR-u6-xux"/>
+                <outlet property="confirmPasswordField" destination="HvH-ff-F1N" id="gtz-v7-5Na"/>
+                <outlet property="emailField" destination="rkv-R5-YsJ" id="dJr-mU-3ut"/>
+                <outlet property="forgotBtn" destination="GeH-ux-5KP" id="Sgq-cO-Qkq"/>
+                <outlet property="mainBtn" destination="DsJ-RE-tir" id="6qX-Xd-rFW"/>
+                <outlet property="passwordField" destination="NlF-C5-3Q7" id="dve-xv-FAq"/>
+                <outlet property="secondaryBtn" destination="ISF-iB-U31" id="hX1-r9-UlH"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="rsJ-cR-eJW">
+                    <rect key="frame" x="146.66666666666666" y="168" width="100" height="100"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="100" id="Scj-6R-OuU"/>
+                        <constraint firstAttribute="height" constant="100" id="jIx-i0-IGR"/>
+                    </constraints>
+                </imageView>
+                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gs0-ld-1ZZ">
+                    <rect key="frame" x="82.000000000000014" y="743" width="229.33333333333337" height="31"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Already have an account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QDt-AS-rQi">
+                            <rect key="frame" x="0.0" y="0.0" width="165.66666666666666" height="31"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="250" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ISF-iB-U31">
+                            <rect key="frame" x="165.66666666666666" y="0.0" width="63.666666666666657" height="31"/>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain" title="Log In">
+                                <fontDescription key="titleFontDescription" type="system" pointSize="14"/>
+                            </buttonConfiguration>
+                            <connections>
+                                <action selector="secondaryBtnTap:" destination="-1" eventType="touchUpInside" id="lfA-ey-3IP"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                </stackView>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="aeh-xb-SoU">
+                    <rect key="frame" x="24" y="318" width="345" height="165"/>
+                    <subviews>
+                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="email" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rkv-R5-YsJ" customClass="CustomTextField" customModule="ChatMate" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="345" height="45"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="45" id="TH0-GV-vfh"/>
+                            </constraints>
+                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES" textContentType="email"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="corner">
+                                    <real key="value" value="10"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="borderLine">
+                                    <real key="value" value="1"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="boderColor">
+                                    <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
+                                    <real key="value" value="20"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="bg">
+                                    <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </textField>
+                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="password" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NlF-C5-3Q7" customClass="CustomTextField" customModule="ChatMate" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="60" width="345" height="45"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="45" id="TAf-F5-IyY"/>
+                            </constraints>
+                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="corner">
+                                    <real key="value" value="10"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="borderLine">
+                                    <real key="value" value="1"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="boderColor">
+                                    <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
+                                    <real key="value" value="20"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="bg">
+                                    <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </textField>
+                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="confirm password" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HvH-ff-F1N" customClass="CustomTextField" customModule="ChatMate" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="120" width="345" height="45"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="45" id="IbM-iv-wKC"/>
+                            </constraints>
+                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="corner">
+                                    <real key="value" value="10"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="borderLine">
+                                    <real key="value" value="1"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="boderColor">
+                                    <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
+                                    <real key="value" value="20"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="bg">
+                                    <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </textField>
+                    </subviews>
+                </stackView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DsJ-RE-tir">
+                    <rect key="frame" x="24" y="543" width="345" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="e59-E6-SCb"/>
+                    </constraints>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="filled" title="Sign Up"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GeH-ux-5KP">
+                    <rect key="frame" x="223.33333333333337" y="493" width="145.66666666666663" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="JiM-he-EhC"/>
+                    </constraints>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="Forgot Password">
+                        <fontDescription key="titleFontDescription" type="system" pointSize="16"/>
+                    </buttonConfiguration>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="DsJ-RE-tir" firstAttribute="trailing" secondItem="aeh-xb-SoU" secondAttribute="trailing" id="01T-H1-uxS"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="gs0-ld-1ZZ" secondAttribute="bottom" constant="10" id="5Wp-Ni-Lbk"/>
+                <constraint firstItem="gs0-ld-1ZZ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="DIc-wb-0Ow"/>
+                <constraint firstItem="DsJ-RE-tir" firstAttribute="top" secondItem="aeh-xb-SoU" secondAttribute="bottom" constant="60" id="KW2-C9-BgG"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="aeh-xb-SoU" secondAttribute="trailing" constant="24" id="WYA-ni-SHB"/>
+                <constraint firstItem="aeh-xb-SoU" firstAttribute="top" secondItem="rsJ-cR-eJW" secondAttribute="bottom" constant="50" id="Ztq-n3-qPf"/>
+                <constraint firstItem="DsJ-RE-tir" firstAttribute="leading" secondItem="aeh-xb-SoU" secondAttribute="leading" id="c56-mO-d9t"/>
+                <constraint firstItem="GeH-ux-5KP" firstAttribute="trailing" secondItem="aeh-xb-SoU" secondAttribute="trailing" id="cSq-yo-fdG"/>
+                <constraint firstItem="GeH-ux-5KP" firstAttribute="top" secondItem="aeh-xb-SoU" secondAttribute="bottom" constant="10" id="rEL-zn-j0D"/>
+                <constraint firstItem="rsJ-cR-eJW" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="50" id="uu9-tL-pOW"/>
+                <constraint firstItem="rsJ-cR-eJW" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="xGV-Lj-nv5"/>
+                <constraint firstItem="aeh-xb-SoU" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="24" id="yEa-UY-ufR"/>
+            </constraints>
+            <point key="canvasLocation" x="-13" y="109"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="logo" width="1024" height="1024"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

@@ -6,8 +6,19 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXContainerItemProxy section */
+		D3B3F83D2EFD731C0088521B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D3B3F8082EFD66550088521B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D3B3F80F2EFD66550088521B;
+			remoteInfo = ChatMate;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		D3B3F8102EFD66550088521B /* ChatMate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChatMate.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D3B3F8372EFD731C0088521B /* ChatMateUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChatMateUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -29,10 +40,22 @@
 			path = ChatMate;
 			sourceTree = "<group>";
 		};
+		D3B3F8382EFD731C0088521B /* ChatMateUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = ChatMateUITests;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		D3B3F80D2EFD66550088521B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D3B3F8342EFD731C0088521B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -46,6 +69,7 @@
 			isa = PBXGroup;
 			children = (
 				D3B3F8122EFD66550088521B /* ChatMate */,
+				D3B3F8382EFD731C0088521B /* ChatMateUITests */,
 				D3B3F8112EFD66550088521B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -54,6 +78,7 @@
 			isa = PBXGroup;
 			children = (
 				D3B3F8102EFD66550088521B /* ChatMate.app */,
+				D3B3F8372EFD731C0088521B /* ChatMateUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -83,6 +108,29 @@
 			productReference = D3B3F8102EFD66550088521B /* ChatMate.app */;
 			productType = "com.apple.product-type.application";
 		};
+		D3B3F8362EFD731C0088521B /* ChatMateUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D3B3F83F2EFD731C0088521B /* Build configuration list for PBXNativeTarget "ChatMateUITests" */;
+			buildPhases = (
+				D3B3F8332EFD731C0088521B /* Sources */,
+				D3B3F8342EFD731C0088521B /* Frameworks */,
+				D3B3F8352EFD731C0088521B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D3B3F83E2EFD731C0088521B /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				D3B3F8382EFD731C0088521B /* ChatMateUITests */,
+			);
+			name = ChatMateUITests;
+			packageProductDependencies = (
+			);
+			productName = ChatMateUITests;
+			productReference = D3B3F8372EFD731C0088521B /* ChatMateUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -95,6 +143,10 @@
 				TargetAttributes = {
 					D3B3F80F2EFD66550088521B = {
 						CreatedOnToolsVersion = 26.0.1;
+					};
+					D3B3F8362EFD731C0088521B = {
+						CreatedOnToolsVersion = 26.0.1;
+						TestTargetID = D3B3F80F2EFD66550088521B;
 					};
 				};
 			};
@@ -113,12 +165,20 @@
 			projectRoot = "";
 			targets = (
 				D3B3F80F2EFD66550088521B /* ChatMate */,
+				D3B3F8362EFD731C0088521B /* ChatMateUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		D3B3F80E2EFD66550088521B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D3B3F8352EFD731C0088521B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -135,7 +195,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D3B3F8332EFD731C0088521B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D3B3F83E2EFD731C0088521B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D3B3F80F2EFD66550088521B /* ChatMate */;
+			targetProxy = D3B3F83D2EFD731C0088521B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		D3B3F8242EFD66560088521B /* Debug */ = {
@@ -150,7 +225,7 @@
 				INFOPLIST_FILE = ChatMate/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -182,7 +257,7 @@
 				INFOPLIST_FILE = ChatMate/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -323,6 +398,46 @@
 			};
 			name = Release;
 		};
+		D3B3F8402EFD731C0088521B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4HMHL946U5;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.saboor.ChatMateUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = ChatMate;
+			};
+			name = Debug;
+		};
+		D3B3F8412EFD731C0088521B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4HMHL946U5;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.saboor.ChatMateUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = ChatMate;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -340,6 +455,15 @@
 			buildConfigurations = (
 				D3B3F8242EFD66560088521B /* Debug */,
 				D3B3F8252EFD66560088521B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D3B3F83F2EFD731C0088521B /* Build configuration list for PBXNativeTarget "ChatMateUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D3B3F8402EFD731C0088521B /* Debug */,
+				D3B3F8412EFD731C0088521B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
