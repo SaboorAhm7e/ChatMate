@@ -1,0 +1,21 @@
+{
+  "images" : [
+    {
+      "filename" : "smiling-young-man-with-crossed-arms-outdoors.jpg",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
