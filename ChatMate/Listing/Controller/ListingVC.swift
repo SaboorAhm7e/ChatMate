@@ -24,8 +24,6 @@ class ListingVC: UIViewController {
         configureDataSource()
         applySnapShot(animatingDifference: false)
         
-      
-        
     }
 
     private func setUpTable() {
@@ -62,5 +60,9 @@ extension ListingVC: UITableViewDelegate {
         let config = UISwipeActionsConfiguration(actions: [deleteAction])
         config.performsFirstActionWithFullSwipe = true
         return config
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = ChatVC()
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
