@@ -16,14 +16,45 @@ class ChatCell: UITableViewCell {
         view.backgroundColor = .clear
         view.translatesAutoresizingMaskIntoConstraints = false
         view.layer.cornerRadius = 10
+        
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowOpacity = 0.3
+        view.layer.shadowOffset = .zero
+        view.layer.shadowRadius = 3
+        
         return view
+    }()
+    
+    lazy var personImage : UIImageView = {
+        let iv = UIImageView()
+        iv.translatesAutoresizingMaskIntoConstraints = false
+        iv.contentMode = .scaleAspectFill
+        return iv
     }()
     
     lazy var messageLabel : UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 0
         return label
     }()
+    lazy var timeLabel : UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "11:00 PM"
+        label.font = UIFont.systemFont(ofSize: 10, weight: .light)
+        return label
+    }()
+    
+    lazy var messageStack : UIStackView = {
+        let stack = UIStackView()
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        stack.axis = .vertical
+        return stack
+    }()
+    
+    private var leadingConstraint : NSLayoutConstraint!
+    private var trailingConstraint : NSLayoutConstraint!
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -35,53 +66,51 @@ class ChatCell: UITableViewCell {
     }
     
     func setUpUI() {
+        self.selectionStyle = .none
+        //contentView.addSubview(messageStack)
         contentView.addSubview(bubbleView)
+        bubbleView.addSubview(messageStack)
+        
+        leadingConstraint = bubbleView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,constant: 10)
+        trailingConstraint = bubbleView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10)
+        
         NSLayoutConstraint.activate([
-            bubbleView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
-            bubbleView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
-            bubbleView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-            bubbleView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
+           
+            bubbleView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            bubbleView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
+            bubbleView.widthAnchor.constraint(lessThanOrEqualTo: contentView.widthAnchor, multiplier: 0.5),
+            
+            messageStack.leadingAnchor.constraint(equalTo: bubbleView.leadingAnchor, constant: 10),
+            messageStack.trailingAnchor.constraint(equalTo: bubbleView.trailingAnchor, constant: -10),
+            messageStack.topAnchor.constraint(equalTo: bubbleView.topAnchor, constant: 8),
+            messageStack.bottomAnchor.constraint(equalTo: bubbleView.bottomAnchor, constant: -8),
+            
         ])
-        bubbleView.addSubview(messageLabel)
-        NSLayoutConstraint.activate([
-            messageLabel.leadingAnchor.constraint(equalTo: bubbleView.leadingAnchor, constant: 5),
-            messageLabel.trailingAnchor.constraint(equalTo: bubbleView.trailingAnchor, constant: -5),
-            messageLabel.topAnchor.constraint(equalTo: bubbleView.topAnchor, constant: 5),
-            messageLabel.bottomAnchor.constraint(equalTo: bubbleView.bottomAnchor, constant: -5),
-        ])
+        messageStack.addArrangedSubview(messageLabel)
+        messageStack.addArrangedSubview(timeLabel)
         
     }
     
     func configure(msg: Message) {
-        bubbleView.removeFromSuperview()
-        contentView.addSubview(bubbleView)
-        if msg.isSender {
-            NSLayoutConstraint.activate([
-                bubbleView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
-                bubbleView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.5),
-                bubbleView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-                bubbleView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
-            ])
-            bubbleView.backgroundColor = .blue.withAlphaComponent(0.7)
-            messageLabel.textColor = .white
-        } else {
-            NSLayoutConstraint.activate([
-                bubbleView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.5),
-                bubbleView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
-                bubbleView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-                bubbleView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
-            ])
-            bubbleView.backgroundColor = .gray.withAlphaComponent(0.5)
-            messageLabel.textColor = .black
-        }
-        bubbleView.addSubview(messageLabel)
+
         messageLabel.text = msg.message
-        NSLayoutConstraint.activate([
-            messageLabel.leadingAnchor.constraint(equalTo: bubbleView.leadingAnchor, constant: 5),
-            messageLabel.trailingAnchor.constraint(equalTo: bubbleView.trailingAnchor, constant: -5),
-            messageLabel.topAnchor.constraint(equalTo: bubbleView.topAnchor, constant: 5),
-            messageLabel.bottomAnchor.constraint(equalTo: bubbleView.bottomAnchor, constant: -5),
-        ])
+        if msg.isSender {
+            trailingConstraint.isActive = true
+            leadingConstraint.isActive = false
+            bubbleView.backgroundColor = UIColor.systemBlue
+            messageLabel.textColor = .white
+            bubbleView.layer.maskedCorners = [.layerMinXMinYCorner,.layerMaxXMinYCorner,.layerMinXMaxYCorner]
+            messageStack.alignment = .trailing
+            timeLabel.textColor = .white
+        } else {
+            trailingConstraint.isActive = false
+            leadingConstraint.isActive = true
+            bubbleView.backgroundColor = UIColor.systemGray4
+            messageLabel.textColor = .label
+            bubbleView.layer.maskedCorners = [.layerMinXMinYCorner,.layerMaxXMinYCorner,.layerMaxXMaxYCorner]
+            messageStack.alignment = .leading
+            timeLabel.textColor = .secondaryLabel
+        }
     }
     
 }

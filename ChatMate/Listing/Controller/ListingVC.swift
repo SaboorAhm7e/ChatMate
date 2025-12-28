@@ -63,6 +63,9 @@ extension ListingVC: UITableViewDelegate {
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = ChatVC()
+        let item = ListingModel.dummyData[indexPath.row]
+        vc.image = item.image
+        vc.name = item.name
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }
