@@ -19,8 +19,10 @@ class ChatVC: UIViewController {
     var name : String = ""
     
     @IBOutlet weak var table: UITableView!
+    @IBOutlet weak var messeageInputViewBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var messageInputView: MessageInputView!
     
-    let data : [Message] = [
+    var data : [Message] = [
         .init(isSender: false, message: "Hello"),
         .init(isSender: true, message: "hi!"),
         .init(isSender: false, message: "how are you"),
@@ -39,6 +41,16 @@ class ChatVC: UIViewController {
         table.estimatedRowHeight = 60
         configureDatasource()
         createSnapshot()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardShow), name:  UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+        messageInputView.sendCompletion = { msg in
+            print("msg: \(msg)")
+            let model = Message(isSender: false, message: msg)
+            self.data.append(model)
+            self.createSnapshot()
+        }
     }
     func setUpNavigationBar() {
 
@@ -88,6 +100,19 @@ class ChatVC: UIViewController {
         snapshot.appendSections(["main"])
         snapshot.appendItems(data, toSection: "main")
         dataSource.apply(snapshot)
+    }
+    
+    @objc func keyboardShow(_ notification : Notification) {
+        
+
+           if let frame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect {
+               print("Keyboard height:", frame.height)
+               let bottomSafeArea = self.view.safeAreaInsets.bottom
+               messeageInputViewBottomConstraint.constant = frame.height - bottomSafeArea
+           }
+    }
+    @objc func keyboardHide(_ notification : Notification) {
+        messeageInputViewBottomConstraint.constant = 0
     }
 
 }

@@ -10,7 +10,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChatVC" customModule="ChatMate" customModuleProvider="target">
             <connections>
-                <outlet property="table" destination="b3B-FP-erz" id="av3-YR-rKH"/>
+                <outlet property="messageInputView" destination="mKO-d6-kA8" id="ucq-3M-dHQ"/>
+                <outlet property="messeageInputViewBottomConstraint" destination="yDb-nd-Jda" id="7Pk-7h-aTd"/>
+                <outlet property="table" destination="Kls-Nl-ahD" id="e27-4o-7Gq"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -19,21 +21,31 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="b3B-FP-erz">
-                    <rect key="frame" x="0.0" y="118" width="393" height="666"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Kls-Nl-ahD">
+                    <rect key="frame" x="0.0" y="118" width="393" height="616"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    <inset key="scrollIndicatorInsets" minX="16" minY="0.0" maxX="16" maxY="0.0"/>
                 </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mKO-d6-kA8" customClass="MessageInputView" customModule="ChatMate" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="734" width="393" height="50"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" priority="250" constant="50" id="Iqj-h4-hy4"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="l94-Yh-frp"/>
+                    </constraints>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="b3B-FP-erz" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="KIv-Cc-urg"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="b3B-FP-erz" secondAttribute="bottom" id="Wds-dC-bqm"/>
-                <constraint firstItem="b3B-FP-erz" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="i3c-Yo-lmR"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="b3B-FP-erz" secondAttribute="trailing" id="xnC-cP-C0D"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="mKO-d6-kA8" secondAttribute="trailing" id="92d-sD-S7g"/>
+                <constraint firstItem="Kls-Nl-ahD" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="gif-cr-Xye"/>
+                <constraint firstItem="mKO-d6-kA8" firstAttribute="top" secondItem="Kls-Nl-ahD" secondAttribute="bottom" id="jhv-gq-Ktd"/>
+                <constraint firstItem="Kls-Nl-ahD" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="k1g-AT-nAT"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Kls-Nl-ahD" secondAttribute="trailing" id="snC-2Z-F2j"/>
+                <constraint firstItem="mKO-d6-kA8" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="wG0-uS-56f"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="mKO-d6-kA8" secondAttribute="bottom" id="yDb-nd-Jda"/>
             </constraints>
-            <point key="canvasLocation" x="-13" y="109"/>
+            <point key="canvasLocation" x="-14.503816793893129" y="108.45070422535211"/>
         </view>
     </objects>
     <resources>
