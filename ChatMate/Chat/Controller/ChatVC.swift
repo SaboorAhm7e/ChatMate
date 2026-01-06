@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAnalytics
 
 nonisolated
 struct Message: Hashable,Sendable {
@@ -34,6 +35,8 @@ class ChatVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        Analytics.logEvent("ChatVC", parameters: nil)
 
         setUpNavigationBar()
         table.register(ChatCell.self, forCellReuseIdentifier: ChatCell.identifier)
