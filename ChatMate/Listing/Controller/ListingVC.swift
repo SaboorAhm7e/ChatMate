@@ -15,15 +15,26 @@ class ListingVC: UIViewController {
     
     private var dataSource : UITableViewDiffableDataSource<String,ListingModel>!
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = "CEOs"
-        self.navigationItem.largeTitleDisplayMode = .always
+        setUpNavigationController()
         setUpTable()
         configureDataSource()
         applySnapShot(animatingDifference: false)
         
+    }
+    func setUpNavigationController() {
+        title = "People"
+        self.navigationItem.largeTitleDisplayMode = .always
+        
+        let settingBtn = UIBarButtonItem(image: UIImage(systemName: "gear"), style: .plain, target: self, action: #selector(settingTap))
+        self.navigationItem.rightBarButtonItem = settingBtn
+    }
+    @objc func settingTap() {
+        self.navigationController?.pushViewController(SettingVC(), animated: true)
     }
 
     private func setUpTable() {

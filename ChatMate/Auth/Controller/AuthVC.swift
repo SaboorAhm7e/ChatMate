@@ -76,6 +76,13 @@ class AuthVC: UIViewController {
     
     // MARK: - action
     
+    @IBAction func mainBtnTap(_ sender: Any) {
+        if !isSignUp {
+            DataManager.shared.isAuthenticate = true
+            let rootVC = VCFactory.makeRootVC()
+            UIApplication.sceneDelegate?.setRootVC(rootVC, animated: true)
+        }
+    }
     @IBAction func secondaryBtnTap(_ sender: Any) {
         isSignUp.toggle()
         setUpUI()
