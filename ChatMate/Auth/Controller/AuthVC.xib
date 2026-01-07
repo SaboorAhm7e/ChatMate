@@ -143,6 +143,9 @@
                     </constraints>
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="filled" title="Sign Up"/>
+                    <connections>
+                        <action selector="mainBtnTap:" destination="-1" eventType="touchUpInside" id="UNJ-zh-UOl"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GeH-ux-5KP">
                     <rect key="frame" x="223.33333333333337" y="493" width="145.66666666666663" height="30"/>
