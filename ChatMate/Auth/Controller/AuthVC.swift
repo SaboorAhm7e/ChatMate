@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class AuthVC: UIViewController {
 
@@ -62,6 +63,7 @@ class AuthVC: UIViewController {
         forgotBtn.isHidden = isSignUp ? true : false
         bottomLabel.text = isSignUp ? "Already have an account?" : "Don't have an account?"
         secondaryBtn.setTitle(isSignUp ? "Log In" : "Create Account", for: .normal)
+        mainBtn.setTitle(isSignUp ? "SignUp" : "Login", for: .normal)
     }
     func setUpMainBtn() {
       mainBtn.layer.shadowColor = UIColor.black.cgColor
@@ -77,10 +79,37 @@ class AuthVC: UIViewController {
     // MARK: - action
     
     @IBAction func mainBtnTap(_ sender: Any) {
+        
+        guard let email = emailField.text, let password = passwordField.text else {
+            return
+        }
+        
         if !isSignUp {
-            DataManager.shared.isAuthenticate = true
-            let rootVC = VCFactory.makeRootVC()
-            UIApplication.sceneDelegate?.setRootVC(rootVC, animated: true)
+            
+            Auth.auth().signIn(withEmail: email, password: password) {  _, error in
+                if let error = error {
+                    print("error: \(error.localizedDescription)")
+                    return
+                }
+                DataManager.shared.isAuthenticate = true
+                let rootVC = VCFactory.makeRootVC()
+                UIApplication.sceneDelegate?.setRootVC(rootVC, animated: true)
+                
+            }
+            
+            
+            
+        } else {
+            
+            Auth.auth().createUser(withEmail: email, password: password) { [weak self] _, err in
+                if let error = err as? NSError {
+                    print("error:\(error.localizedDescription)")
+                    return
+                }
+                print("success")
+                self?.isSignUp.toggle()
+                self?.setUpUI()
+            }
         }
     }
     @IBAction func secondaryBtnTap(_ sender: Any) {

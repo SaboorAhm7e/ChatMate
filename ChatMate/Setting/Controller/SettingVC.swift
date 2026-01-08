@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 enum ProvidedLanguage: String {
     case en = "English"
@@ -43,8 +44,17 @@ class SettingVC: UIViewController {
     }
     
     @IBAction func singOutTap(_ sender: Any) {
-        DataManager.shared.isAuthenticate = false
-        let rootVC = VCFactory.makeRootVC()
-        UIApplication.sceneDelegate?.setRootVC(rootVC, animated: true)
+        
+        do {
+           try  Auth.auth().signOut()
+            DataManager.shared.isAuthenticate = false
+            let rootVC = VCFactory.makeRootVC()
+            UIApplication.sceneDelegate?.setRootVC(rootVC, animated: true)
+        } catch {
+            print("sign out failed : \(error.localizedDescription)")
+        }
+        
+        
+        
     }
 }
