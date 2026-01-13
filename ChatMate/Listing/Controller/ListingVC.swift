@@ -31,10 +31,14 @@ class ListingVC: UIViewController {
         self.navigationItem.largeTitleDisplayMode = .always
         
         let settingBtn = UIBarButtonItem(image: UIImage(systemName: "gear"), style: .plain, target: self, action: #selector(settingTap))
-        self.navigationItem.rightBarButtonItem = settingBtn
+        let profileBtn = UIBarButtonItem(image: UIImage(systemName: "person.fill"), style: .plain, target: self, action: #selector(profileTap))
+        self.navigationItem.rightBarButtonItems = [settingBtn,profileBtn]
     }
     @objc func settingTap() {
         self.navigationController?.pushViewController(SettingVC(), animated: true)
+    }
+    @objc func profileTap() {
+        self.navigationController?.pushViewController(ProfileVC(), animated: true)
     }
 
     private func setUpTable() {
