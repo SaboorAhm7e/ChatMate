@@ -7,6 +7,9 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseFirestore
+
+var currentUser : [String:Any] = [:]
 
 class AuthVC: UIViewController {
 
@@ -87,11 +90,14 @@ class AuthVC: UIViewController {
         
         if !isSignUp {
             
-            Auth.auth().signIn(withEmail: email, password: password) {  _, error in
+            Auth.auth().signIn(withEmail: email, password: password) {  result, error in
                 if let error = error {
                     print("error: \(error.localizedDescription)")
                     return
                 }
+                
+                
+                
                 DataManager.shared.isAuthenticate = true
                 let rootVC = VCFactory.makeRootVC()
                 UIApplication.sceneDelegate?.setRootVC(rootVC, animated: true)
@@ -102,12 +108,24 @@ class AuthVC: UIViewController {
             
         } else {
             
-            Auth.auth().createUser(withEmail: email, password: password) { [weak self] _, err in
+            Auth.auth().createUser(withEmail: email, password: password) { [weak self] result, err in
                 if let error = err as? NSError {
                     print("error:\(error.localizedDescription)")
                     return
                 }
-                print("success")
+                guard let user = result?.user else { return }
+                
+                let db = Firestore.firestore()
+                let userData : [String:Any] = [
+                    "userid" :  user.uid,
+                    "photoURL" : "",
+                    "email": email,
+                    "age" : 0,
+                    "created": FieldValue.serverTimestamp()
+                ]
+                db.collection("users").document(user.uid).setData(userData)
+                
+                
                 self?.isSignUp.toggle()
                 self?.setUpUI()
             }

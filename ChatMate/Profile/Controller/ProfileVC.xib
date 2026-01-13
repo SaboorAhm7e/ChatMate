@@ -10,6 +10,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProfileVC" customModule="ChatMate" customModuleProvider="target">
             <connections>
+                <outlet property="ageField" destination="12N-7X-8H5" id="5IF-d4-dMZ"/>
+                <outlet property="emailField" destination="yhH-Wz-fRR" id="YZF-Bk-tjl"/>
+                <outlet property="nameField" destination="o1I-dL-Vt3" id="3cp-cW-tEH"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
