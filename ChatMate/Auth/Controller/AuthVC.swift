@@ -80,8 +80,6 @@ class AuthVC: UIViewController {
     
     @IBAction func mainBtnTap(_ sender: Any) {
         
-        let numbers = [0]
-        let _ = numbers[1]
         
         guard let email = emailField.text, let password = passwordField.text else {
             return
