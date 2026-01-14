@@ -117,11 +117,12 @@ class AuthVC: UIViewController {
                 
                 let db = Firestore.firestore()
                 let userData : [String:Any] = [
-                    "userid" :  user.uid,
+                    "uid" :  user.uid,
                     "photoURL" : "",
                     "email": email,
-                    "age" : 0,
-                    "created": FieldValue.serverTimestamp()
+                    "gender" : "",
+                    "firstName" : "",
+                    "lastName" : ""
                 ]
                 db.collection("users").document(user.uid).setData(userData)
                 

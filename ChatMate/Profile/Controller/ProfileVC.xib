@@ -10,9 +10,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProfileVC" customModule="ChatMate" customModuleProvider="target">
             <connections>
-                <outlet property="ageField" destination="12N-7X-8H5" id="5IF-d4-dMZ"/>
-                <outlet property="emailField" destination="yhH-Wz-fRR" id="YZF-Bk-tjl"/>
-                <outlet property="nameField" destination="o1I-dL-Vt3" id="3cp-cW-tEH"/>
+                <outlet property="emailField" destination="rpa-5F-Pnx" id="Ped-34-TM0"/>
+                <outlet property="firstNameField" destination="bYT-uz-qdk" id="kP8-7C-mIE"/>
+                <outlet property="lastNameField" destination="FfN-AJ-fjp" id="vvJ-Tn-Yq0"/>
+                <outlet property="segmentControl" destination="hF8-Fh-1e7" id="aEl-XI-Pju"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -21,52 +22,64 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Eqx-1w-vvv">
-                    <rect key="frame" x="96.666666666666686" y="168" width="200" height="243.33333333333337"/>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="dNS-PT-Ipo">
+                    <rect key="frame" x="96.666666666666686" y="168.66666666666669" width="200" height="198.66666666666669"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="200" id="5He-ee-evK"/>
+                        <constraint firstAttribute="width" constant="200" id="hNM-PG-thg"/>
+                    </constraints>
+                </imageView>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="icw-WR-lwU">
+                    <rect key="frame" x="16" y="398" width="361" height="178"/>
                     <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="dNS-PT-Ipo">
-                            <rect key="frame" x="0.0" y="0.6666666666666714" width="200" height="198.66666666666669"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="200" id="5He-ee-evK"/>
-                                <constraint firstAttribute="width" constant="200" id="hNM-PG-thg"/>
-                            </constraints>
-                        </imageView>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="izC-bN-aJA">
-                            <rect key="frame" x="0.0" y="200" width="200" height="43.333333333333343"/>
-                            <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="filled" title="Edit"/>
-                        </button>
-                    </subviews>
-                </stackView>
-                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="nI0-Md-EOs">
-                    <rect key="frame" x="16" y="441.33333333333331" width="361" height="121.99999999999994"/>
-                    <subviews>
-                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="o1I-dL-Vt3">
+                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bYT-uz-qdk">
                             <rect key="frame" x="0.0" y="0.0" width="361" height="34"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
-                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yhH-Wz-fRR">
-                            <rect key="frame" x="0.0" y="44" width="361" height="34"/>
+                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FfN-AJ-fjp">
+                            <rect key="frame" x="0.0" y="49" width="361" height="34"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
-                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Age" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="12N-7X-8H5">
-                            <rect key="frame" x="0.0" y="88.000000000000057" width="361" height="34"/>
+                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rpa-5F-Pnx">
+                            <rect key="frame" x="0.0" y="98" width="361" height="34"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
+                        <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="hF8-Fh-1e7">
+                            <rect key="frame" x="0.0" y="147" width="361" height="32"/>
+                            <segments>
+                                <segment title="Male"/>
+                                <segment title="Female"/>
+                                <segment title="Not Specified"/>
+                            </segments>
+                            <connections>
+                                <action selector="segmentDidChange:" destination="-1" eventType="valueChanged" id="d13-ie-DvK"/>
+                            </connections>
+                        </segmentedControl>
                     </subviews>
                 </stackView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rbj-5l-6sC">
+                    <rect key="frame" x="16" y="606" width="361" height="43.333333333333371"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="filled" title="Edit"/>
+                    <connections>
+                        <action selector="editBtnTap:" destination="-1" eventType="touchUpInside" id="Zne-hl-Xiq"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="nI0-Md-EOs" firstAttribute="top" secondItem="Eqx-1w-vvv" secondAttribute="bottom" constant="30" id="Sxt-jm-Vnp"/>
-                <constraint firstItem="Eqx-1w-vvv" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="50" id="buv-3Q-UfX"/>
-                <constraint firstItem="nI0-Md-EOs" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="oN9-P8-5jY"/>
-                <constraint firstItem="Eqx-1w-vvv" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="p9Z-IG-LEi"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="nI0-Md-EOs" secondAttribute="trailing" constant="16" id="yfT-wi-p2e"/>
+                <constraint firstItem="rbj-5l-6sC" firstAttribute="top" secondItem="icw-WR-lwU" secondAttribute="bottom" constant="30" id="6Jc-vX-N0o"/>
+                <constraint firstItem="icw-WR-lwU" firstAttribute="top" secondItem="dNS-PT-Ipo" secondAttribute="bottom" constant="30" id="6nS-92-h9h"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="rbj-5l-6sC" secondAttribute="trailing" constant="16" id="8Rp-tj-aoP"/>
+                <constraint firstItem="dNS-PT-Ipo" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="50" id="Fya-2X-OLF"/>
+                <constraint firstItem="rbj-5l-6sC" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="M1K-ga-Jdj"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="icw-WR-lwU" secondAttribute="trailing" constant="16" id="Ygg-uM-z7O"/>
+                <constraint firstItem="dNS-PT-Ipo" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="fKp-n2-jve"/>
+                <constraint firstItem="icw-WR-lwU" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="rN0-cX-Fs7"/>
             </constraints>
             <point key="canvasLocation" x="-245" y="109"/>
         </view>
