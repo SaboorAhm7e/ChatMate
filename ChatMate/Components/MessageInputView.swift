@@ -91,7 +91,7 @@ class MessageInputView: UIView , UITextViewDelegate {
     func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
         if textView.text == "type something.." {
             textView.text = ""
-            textView.textColor = .black
+            textView.textColor = .label
         } else if textView.text == "" {
             textView.text = "type something.."
             textView.textColor = .gray

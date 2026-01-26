@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseCore
 
 class ChatCell: UITableViewCell {
 
@@ -91,18 +93,15 @@ class ChatCell: UITableViewCell {
         
     }
     
-    func configure(msg: Message) {
+    func configure(msg: MessageModel) {
 
-        messageLabel.text = msg.message
-        if msg.isSender {
-            trailingConstraint.isActive = true
-            leadingConstraint.isActive = false
-            bubbleView.backgroundColor = UIColor.systemBlue
-            messageLabel.textColor = .white
-            bubbleView.layer.maskedCorners = [.layerMinXMinYCorner,.layerMaxXMinYCorner,.layerMinXMaxYCorner]
-            messageStack.alignment = .trailing
-            timeLabel.textColor = .white
-        } else {
+        print("time is -------- \(msg.time.dateValue())")
+        let uid = Auth.auth().currentUser?.uid
+        
+        messageLabel.text = msg.text
+        let date = msg.time.dateValue()
+        timeLabel.text = String(date.formatted(date: .omitted, time: .shortened))
+        if uid! == msg.senderId {
             trailingConstraint.isActive = false
             leadingConstraint.isActive = true
             bubbleView.backgroundColor = UIColor.systemGray4
@@ -110,7 +109,18 @@ class ChatCell: UITableViewCell {
             bubbleView.layer.maskedCorners = [.layerMinXMinYCorner,.layerMaxXMinYCorner,.layerMaxXMaxYCorner]
             messageStack.alignment = .leading
             timeLabel.textColor = .secondaryLabel
+            
+        } else {
+            trailingConstraint.isActive = true
+            leadingConstraint.isActive = false
+            bubbleView.backgroundColor = UIColor.systemBlue
+            messageLabel.textColor = .white
+            bubbleView.layer.maskedCorners = [.layerMinXMinYCorner,.layerMaxXMinYCorner,.layerMinXMaxYCorner]
+            messageStack.alignment = .trailing
+            timeLabel.textColor = .white
         }
+        
+       
     }
     
 }

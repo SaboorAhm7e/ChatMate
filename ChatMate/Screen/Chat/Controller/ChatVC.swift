@@ -6,35 +6,27 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseFirestore
 import FirebaseAnalytics
 
-nonisolated
-struct Message: Hashable,Sendable {
-    let isSender : Bool
-    let message : String
-}
 
 class ChatVC: UIViewController {
     
     var image : String = ""
-    var name : String = ""
+    var chat : ChatModel!
     
     @IBOutlet weak var table: UITableView!
     @IBOutlet weak var messeageInputViewBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var messageInputView: MessageInputView!
     
-    var data : [Message] = [
-        .init(isSender: false, message: "Hello"),
-        .init(isSender: true, message: "hi!"),
-        .init(isSender: false, message: "how are you"),
-        .init(isSender: true, message: "i am good!  whats about you"),
-        .init(isSender: false, message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.")
-    ]
+    var messages : [MessageModel] = []
     
-    var dataSource : UITableViewDiffableDataSource<String,Message>!
+    var dataSource : UITableViewDiffableDataSource<String,MessageModel>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        fetchMessages()
         
         Analytics.logEvent("ChatVC", parameters: nil)
 
@@ -48,11 +40,8 @@ class ChatVC: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardShow), name:  UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
-        messageInputView.sendCompletion = { msg in
-            print("msg: \(msg)")
-            let model = Message(isSender: false, message: msg)
-            self.data.append(model)
-            self.createSnapshot()
+        messageInputView.sendCompletion = { [weak self] text in
+            self?.sendMessage(text)
         }
     }
     func setUpNavigationBar() {
@@ -69,7 +58,13 @@ class ChatVC: UIViewController {
         
         let nameLabel = UILabel()
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        nameLabel.text = name
+        Task {
+            if let othePerson = await getPerson(members: chat!.members) {
+                nameLabel.text = othePerson.fullName
+            }
+           
+        }
+        
         nameLabel.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
         nameLabel.textColor = .label
         nameLabel.textAlignment = .center
@@ -90,7 +85,7 @@ class ChatVC: UIViewController {
         navigationItem.titleView = containerView
     }
     func configureDatasource() {
-        dataSource = UITableViewDiffableDataSource<String,Message>(tableView: table, cellProvider: { tableView, indexPath, itemIdentifier in
+        dataSource = UITableViewDiffableDataSource<String,MessageModel>(tableView: table, cellProvider: { tableView, indexPath, itemIdentifier in
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ChatCell.identifier, for: indexPath) as? ChatCell else {
                 return UITableViewCell()
             }
@@ -98,11 +93,85 @@ class ChatVC: UIViewController {
             return cell
         })
     }
+    func fetchMessages() {
+        Firestore.firestore()
+            .collection("chats")
+            .document(chat.chatId)
+            .collection("messages")
+            .order(by: "time", descending: false)
+            .addSnapshotListener { [weak self] snapshot, error in
+                
+                guard let self = self else { return }
+                guard let documents = snapshot?.documents else { return }
+                
+                self.messages = documents.compactMap {
+                    MessageModel(document: $0)
+                }
+                
+                self.createSnapshot()
+                
+                if self.messages.count > 0 {
+                    let indexPath = IndexPath(row: self.messages.count - 1, section: 0)
+                    self.table.scrollToRow(at: indexPath, at: .bottom, animated: true)
+                }
+            }
+    }
+
+    func getPerson(members : [String]) async -> UserModel? {
+        guard let currentUserId = Auth.auth().currentUser?.uid else { return nil }
+        
+        let otherid = members.first(where: {$0 != currentUserId}) ?? currentUserId
+        
+        do {
+            let snapshot = try await Firestore.firestore()
+                                .collection("users")
+                                .document(otherid)
+                                .getDocument()
+            
+            if let userModel = UserModel(document: snapshot) {
+                return userModel
+            }
+
+        } catch {
+            print("error getting user :\(error.localizedDescription)")
+            
+        }
+        return nil
+        
+    }
+    func sendMessage(_ text: String) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        
+        let ref = Firestore.firestore()
+            .collection("chats")
+            .document(chat.chatId)
+            .collection("messages")
+            .document()
+        
+        let data: [String: Any] = [
+            "senderId": uid,
+            "text": text,
+            "time": Timestamp()
+        ]
+        
+        ref.setData(data)
+        
+        // update last message
+        Firestore.firestore()
+            .collection("chats")
+            .document(chat.chatId)
+            .updateData([
+                "lastMessage": text,
+                "lastMessageSender": uid,
+                "lastMessageTime": Timestamp()
+            ])
+    }
+
     func createSnapshot(animatingDifference: Bool = true) {
-        var snapshot = NSDiffableDataSourceSnapshot<String, Message>()
+        var snapshot = NSDiffableDataSourceSnapshot<String, MessageModel>()
         snapshot.appendSections(["main"])
-        snapshot.appendItems(data, toSection: "main")
-        dataSource.apply(snapshot)
+        snapshot.appendItems(messages, toSection: "main")
+        dataSource.apply(snapshot, animatingDifferences: animatingDifference)
     }
     
     @objc func keyboardShow(_ notification : Notification) {

@@ -13,6 +13,7 @@
                 <outlet property="emailField" destination="rpa-5F-Pnx" id="Ped-34-TM0"/>
                 <outlet property="firstNameField" destination="bYT-uz-qdk" id="kP8-7C-mIE"/>
                 <outlet property="lastNameField" destination="FfN-AJ-fjp" id="vvJ-Tn-Yq0"/>
+                <outlet property="profileImage" destination="dNS-PT-Ipo" id="W2n-Ds-HIK"/>
                 <outlet property="segmentControl" destination="hF8-Fh-1e7" id="aEl-XI-Pju"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -22,13 +23,29 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="dNS-PT-Ipo">
-                    <rect key="frame" x="96.666666666666686" y="168.66666666666669" width="200" height="198.66666666666669"/>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="7T7-A9-nkA">
+                    <rect key="frame" x="96.666666666666686" y="168" width="200" height="200"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="dNS-PT-Ipo">
+                            <rect key="frame" x="0.0" y="0.6666666666666714" width="200" height="168.66666666666669"/>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fns-gq-sYW">
+                            <rect key="frame" x="0.0" y="170" width="200" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="vh1-tP-VFW"/>
+                            </constraints>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="tinted" image="pencil" catalog="system"/>
+                            <connections>
+                                <action selector="didTapEditPhoto:" destination="-1" eventType="touchUpInside" id="raf-Cu-soX"/>
+                            </connections>
+                        </button>
+                    </subviews>
                     <constraints>
-                        <constraint firstAttribute="height" constant="200" id="5He-ee-evK"/>
-                        <constraint firstAttribute="width" constant="200" id="hNM-PG-thg"/>
+                        <constraint firstAttribute="height" constant="200" id="4pE-mn-gaK"/>
+                        <constraint firstAttribute="width" constant="200" id="U4N-HC-Mee"/>
                     </constraints>
-                </imageView>
+                </stackView>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="icw-WR-lwU">
                     <rect key="frame" x="16" y="398" width="361" height="178"/>
                     <subviews>
@@ -73,18 +90,19 @@
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="rbj-5l-6sC" firstAttribute="top" secondItem="icw-WR-lwU" secondAttribute="bottom" constant="30" id="6Jc-vX-N0o"/>
-                <constraint firstItem="icw-WR-lwU" firstAttribute="top" secondItem="dNS-PT-Ipo" secondAttribute="bottom" constant="30" id="6nS-92-h9h"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="rbj-5l-6sC" secondAttribute="trailing" constant="16" id="8Rp-tj-aoP"/>
-                <constraint firstItem="dNS-PT-Ipo" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="50" id="Fya-2X-OLF"/>
                 <constraint firstItem="rbj-5l-6sC" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="M1K-ga-Jdj"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="icw-WR-lwU" secondAttribute="trailing" constant="16" id="Ygg-uM-z7O"/>
-                <constraint firstItem="dNS-PT-Ipo" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="fKp-n2-jve"/>
+                <constraint firstItem="7T7-A9-nkA" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="fmu-MZ-2iL"/>
+                <constraint firstItem="icw-WR-lwU" firstAttribute="top" secondItem="7T7-A9-nkA" secondAttribute="bottom" constant="30" id="gPh-iO-4Ta"/>
                 <constraint firstItem="icw-WR-lwU" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="rN0-cX-Fs7"/>
+                <constraint firstItem="7T7-A9-nkA" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="50" id="wfI-ou-ojL"/>
             </constraints>
             <point key="canvasLocation" x="-245" y="109"/>
         </view>
     </objects>
     <resources>
+        <image name="pencil" catalog="system" width="128" height="113"/>
         <image name="person.circle.fill" catalog="system" width="128" height="123"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
